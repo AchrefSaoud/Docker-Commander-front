@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<div class="dash">
+    <div class="w-full bg-white overflow-hidden">
+        <div class="md:flex">
+            <div class="p-8 w-full">
+                <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">System Information</div>
+                <table class="min-w-full mt-4">
+                    <tbody>
+                        <tr class="bg-gray-100">
+                            <td class="py-2 px-4 text-gray-700 font-bold">Kernel Version:</td>
+                            <td class="py-2 px-4 text-gray-600">{{systemInfo.kernelVersion}}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 text-gray-700 font-bold">Operating System:</td>
+                            <td class="py-2 px-4 text-gray-600">{{systemInfo.operatingSystem}}</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="py-2 px-4 text-gray-700 font-bold">OSType:</td>
+                            <td class="py-2 px-4 text-gray-600">{{systemInfo.osType}}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 text-gray-700 font-bold">Architecture:</td>
+                            <td class="py-2 px-4 text-gray-600">{{systemInfo.architecture}}</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="py-2 px-4 text-gray-700 font-bold">CPUs:</td>
+                            <td class="py-2 px-4 text-gray-600">{{systemInfo.cpus}}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 text-gray-700 font-bold">Total Memory:</td>
+                            <td class="py-2 px-4 text-gray-600">{{systemInfo.totalMemory}}</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="py-2 px-4 text-gray-700 font-bold">Name:</td>
+                            <td class="py-2 px-4 text-gray-600">{{systemInfo.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 text-gray-700 font-bold">ID:</td>
+                            <td class="py-2 px-4 text-gray-600">{{systemInfo.id}}</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="py-2 px-4 text-gray-700 font-bold">Docker Root Dir:</td>
+                            <td class="py-2 px-4 text-gray-600">{{systemInfo.dockerRootDir}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="flex ml-52 ">
+        <div class="bg-white shadow-md rounded-lg p-6 w-80 flex flex-col h-full">
+            <h2 class="text-xl font-bold mb-4">Containers</h2>
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-gray-600">Total</span>
+                <span class="font-semibold">{{NumberOfContainers}}</span>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center">
+                    <img class="w-6 h-6" src="assets/images/power-button_4943421.png" />
+                    <span class="text-gray-600">Running</span>
+                </div>
+                <span class="font-semibold">{{NumberOfRuningContainers}}</span>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center">
+                    <img class="w-6 h-6" src="assets/images/power_15742997.png" />
+                    <span class="text-gray-600">Stopped</span>
+                </div>
+                <span class="font-semibold">{{NumberOfContainers-NumberOfRuningContainers}}</span>
+            </div>
+        </div>
+        <div class="bg-white shadow-md rounded-lg p-6 w-80 flex flex-col">
+            <h2 class="text-xl font-bold mb-4">Images</h2>
+            <div class="flex items-center justify-between">
+                <span class="text-gray-600">Total</span>
+                <span class="font-semibold">{{NumberOfImages}}</span>
+            </div>
+        </div>
+    </div>
+</div>

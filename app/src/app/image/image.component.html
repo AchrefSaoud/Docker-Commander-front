@@ -1,0 +1,61 @@
+<div class="aa">
+  <div class="container mx-auto p-4">
+    <div class="mb-4">
+      <h1 class="block text-sm font-medium text-gray-700">Select an image:</h1>
+      <form class="flex items-center" (submit)="pullImage(selectedImage.value)">
+        <select id="images" #selectedImage class="mt-1 block w-4/5 pl-3 pr-10 py-2 h-10 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+          <option *ngFor="let image of suggestedImages" [value]="image">{{ image }}</option>
+        </select>
+        <button type="submit" class="mt-2 w-1/5 px-4 py-2 bg-blue-500 text-white rounded-sm" [disabled]="isLoading">Pull</button>
+      </form>
+    </div>
+
+    <div *ngIf="isLoading" class="mb-4">
+      <p>Loading...</p>
+    </div>
+    <div *ngIf="successMessage.length > 0" class="mb-4 text-green-500">
+      <p>{{ successMessage }}</p>
+    </div>
+    <div *ngIf="errorMessage.length > 0" class="mb-4 text-red-500">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+    <div class="mb-4">
+      <label for="search" class="block text-sm font-medium text-gray-700">Search:</label>
+      <input type="text" id="search" [(ngModel)]="searchQuery" (input)="filterImages()" class="mt-1 w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+    </div>
+    <div>
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Repository</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tag</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr *ngFor="let image of filteredImages">
+            <td class="px-6 py-4 whitespace-nowrap">{{ image.ID }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ image.Repository.substring(1)}}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ image.Tag }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ image.Size.substring(0,image.Size.length-1)}}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ image.CreatedSince }}</td>
+            <td class="px-6 py-4 whitespace-nowrap flex items-center space-x-2">
+              <button (click)="runContainer(image.ID)" class="bg-green-500 px-4 py-2 text-white rounded-md">
+                run
+              </button>
+              <button 
+                (click)="deleteImage(image.ID)" 
+                class="px-4 py-2 bg-red-600 text-white rounded-md">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

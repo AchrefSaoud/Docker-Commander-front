@@ -1,0 +1,9 @@
+.aa{
+    float: left;
+    width: 80%;
+    height: 600px;
+    margin-left: 20%;
+}
+#search,#containerName,#imageName{
+    border: #6366f1 1px solid;
+}
